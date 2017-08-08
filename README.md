@@ -1,4 +1,4 @@
-# spring-boot-template-mysql
+# docker-spring-boot-template-mysql
 
 docker build -t sbtdb .
 
