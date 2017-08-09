@@ -21,7 +21,22 @@ CREATE TABLE IF NOT EXISTS `sbtdb`.`user_info` (
   `email` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`user_id`));
 
-INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('1', 'sbt', 'sbt', 'sbt@localhost');
+CREATE TABLE IF NOT EXISTS `sbtdb`.`authorities` (
+  `user_id` INT NOT NULL,
+  `authority` VARCHAR(256) NOT NULL,
+  PRIMARY KEY (`user_id`, `authority`),
+  CONSTRAINT `fk_authorities_user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `sbtdb`.`user_info` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('1', 'admin', 'admin', 'admin@localhost');
+INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('2', 'sbt', 'sbt', 'sbt@localhost');
+
+INSERT INTO `sbtdb`.`authorities` (`user_id`, `authority`) VALUES ('1', 'ACTUATOR');
+INSERT INTO `sbtdb`.`authorities` (`user_id`, `authority`) VALUES ('1', 'ROLE_ADMIN');
+INSERT INTO `sbtdb`.`authorities` (`user_id`, `authority`) VALUES ('2', 'ROLE_USER');
 
 INSERT INTO `sbtdb`.`book` (`book_id`, `book_name`, `link`, `img`, `description`, `tag`) VALUES ('1', 'spring boot book', 'http://aaa', 'http:xxx', 'aaaa', 'java,spring,spring boot');
 INSERT INTO `sbtdb`.`book` (`book_id`, `book_name`, `link`, `img`, `description`, `tag`) VALUES ('2', 'spring book', 'http://bbb', 'http:xxx', 'aaaa', 'java spring');
@@ -30,4 +45,3 @@ INSERT INTO `sbtdb`.`book` (`book_id`, `book_name`, `link`, `img`, `description`
 INSERT INTO `sbtdb`.`book` (`book_id`, `book_name`, `link`, `img`, `description`, `tag`) VALUES ('5', 'SQL book', 'http://eee', 'http:xxx', 'aaaa', 'sql');
 
 commit;
-
