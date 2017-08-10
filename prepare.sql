@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `sbtdb`.`authorities` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('1', 'admin', 'admin', 'admin@localhost');
-INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('2', 'sbt', 'sbt', 'sbt@localhost');
+INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('1', 'admin', '$2a$10$0xEf3JbeuaQte16t5GQ56epgILEZKSonOKzKZPcpIs1usE0Ir8kcu', 'admin@localhost');
+INSERT INTO `sbtdb`.`user_info` (`user_id`, `username`, `password`, `email`) VALUES ('2', 'sbt', '$2a$10$HfW1CordTM4.WmWMZpwfIei4qXVB9BApVQRwDEFevgcYq0502jMKy', 'sbt@localhost');
 
 INSERT INTO `sbtdb`.`authorities` (`user_id`, `authority`) VALUES ('1', 'ACTUATOR');
 INSERT INTO `sbtdb`.`authorities` (`user_id`, `authority`) VALUES ('1', 'ROLE_ADMIN');
